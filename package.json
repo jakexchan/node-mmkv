@@ -1,0 +1,21 @@
+{
+  "name": "node-mmkv",
+  "version": "1.0.0",
+  "description": "Base on Tencent MMKV high-performance key-value storage framework. Implement Node.js",
+  "main": "index.js",
+  "scripts": {
+    "build": "cmake-js build",
+    "compile": "cmake-js compile",
+    "test": "node index.js"
+  },
+  "author": "Kevin Chan",
+  "license": "MIT",
+  "dependencies": {
+    "bindings": "^1.5.0",
+    "node-addon-api": "^5.0.0"
+  },
+  "devDependencies": {
+    "cmake-js": "^6.3.2"
+  },
+  "cmake-js": {}
+}
