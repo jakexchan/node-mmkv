@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "description": "Base on Tencent MMKV high-performance key-value storage framework. Implement Node.js",
   "main": "index.js",
+  "type": "commonjs",
+  "typings": "index.d.ts",
   "scripts": {
+    "install": "cmake-js compile",
     "build": "cmake-js build",
     "compile": "cmake-js compile",
-    "test": "node index.js"
+    "test": "node demo/test.js"
   },
   "author": "Kevin Chan",
   "license": "MIT",
