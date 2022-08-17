@@ -2,10 +2,10 @@ const MMKVModule = require("../");
 const path = require("path");
 
 console.log("MMKVModule", MMKVModule);
-const instance = new MMKVModule();
-
-console.log("initializeMMKV");
-instance.initializeMMKV(path.join(__dirname, "./mmkv"));
+const instance = new MMKVModule({
+  rootDir: path.join(__dirname, "./mmkv"),
+  id: "com.node.mmkv",
+});
 
 console.log("setString", "testKey", "123456789");
 instance.setString("testKey", "123456789");

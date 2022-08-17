@@ -1,12 +1,25 @@
 {
   "name": "node-mmkv",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Base on Tencent MMKV high-performance key-value storage framework. Implement Node.js",
   "main": "index.js",
   "type": "commonjs",
   "typings": "index.d.ts",
+  "files": [
+    "MMKV/Core",
+    "MMKV/POSIX",
+    "scripts",
+    "src/**/*.cc",
+    "src/**/*.h",
+    "CHANGELOG.md",
+    "CMakeLists.txt",
+    "index.d.ts",
+    "index.js",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
-    "install": "cmake-js compile",
+    "postinstall": "node ./scripts/postinstall.js",
     "build": "cmake-js build",
     "compile": "cmake-js compile",
     "test": "node demo/test.js"
@@ -19,6 +32,5 @@
   },
   "devDependencies": {
     "cmake-js": "^6.3.2"
-  },
-  "cmake-js": {}
+  }
 }

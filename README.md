@@ -10,6 +10,35 @@ __It is in the experimental stage, please do not use it in production environmen
 
 - Node.js v16.x, NAPI version 8
 - cmake
+- C++
+
+# Install
+
+```
+npm install --save-dev node-mmkv
+
+// or
+
+yarn add node-mmkv -S
+```
+
+You can use it on `Electron`. The first step to setup `cmake` compile configuration:
+
+```
+npm config set cmake_node_runtime="electron" # eg: node|iojs|nw|electron
+npm config set cmake_node_runtimeversion="x.y.z" # eg: 18.3.5
+npm config set cmake_node_arch="x64"  # eg: x64|ia32|arm
+```
+
+and run command on your project
+
+```bash
+yarn install
+
+// or
+
+npm install
+```
 
 # Usage
 
@@ -17,16 +46,30 @@ __It is in the experimental stage, please do not use it in production environmen
 const MMKVModule = require("node-mmkv");
 const path = require("path");
 
-const mmkv = new MMKVModule();
+const mmkv = new MMKVModule({
+  rootDir: path.join(__dirname, "./mmkv"),
+  id: "com.node.mmkv",
+});
 
-mmkv.initializeMMKV(path.join(__dirname, "./mmkv"));
+// and you can create multiple instance
+const logMMKV = new MMKVModule({
+  rootDir: path.join(__dirname, "./mmkv"),
+  id: "com.app.log",
+});
 ```
 
 ## API
 
-### initializeMMKV(rootDir: string)
+### constructor(options: MMKVModuleOptions)
 
-Initial MMKV framework instance. `rootDir` is a absolute path string.
+MMKVModule constructor, `options` is required.
+
+`options` properties:
+
+- `rootDir`: File saved path.[required]
+- `id`: mmap id, `default: mmkv.default`[optional]
+- `multiProcess`: Enable multi process, `default: false`[optional]
+- `cryptKey`: encryption key[optional]
 
 ### setString: (key: string, value: string) => boolean | undefined;
 
@@ -71,6 +114,11 @@ Clear memory cache.
 ### clearAll: () => void;
 
 Clear all keys and values in storage.
+
+# TODO
+
+- Implement more APIs.
+- Test case.
 
 # License
 

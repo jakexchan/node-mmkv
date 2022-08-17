@@ -10,9 +10,7 @@ class MMKVModule : public Napi::ObjectWrap<MMKVModule>
 {
 public:
   static Napi::Object Init(Napi::Env env, Napi::Object exports);
-  MMKVModule(const Napi::CallbackInfo &info);
-
-  Napi::Value InitializeMMKV(const Napi::CallbackInfo &info);
+  explicit MMKVModule(const Napi::CallbackInfo &info);
 
   Napi::Value SetString(const Napi::CallbackInfo &info);
   Napi::Value GetString(const Napi::CallbackInfo &info);

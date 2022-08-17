@@ -11,8 +11,7 @@ Napi::Object MMKVModule::Init(Napi::Env env, Napi::Object exports)
   Napi::Function func = DefineClass(
       env,
       "MMKVModule",
-      {InstanceMethod<&MMKVModule::InitializeMMKV>("initializeMMKV"),
-       InstanceMethod<&MMKVModule::SetString>("setString"),
+      {InstanceMethod<&MMKVModule::SetString>("setString"),
        InstanceMethod<&MMKVModule::GetString>("getString"),
        InstanceMethod<&MMKVModule::SetBoolean>("setBoolean"),
        InstanceMethod<&MMKVModule::GetBoolean>("getBoolean"),
@@ -33,21 +32,37 @@ Napi::Object MMKVModule::Init(Napi::Env env, Napi::Object exports)
 
 MMKVModule::MMKVModule(const Napi::CallbackInfo &info) : Napi::ObjectWrap<MMKVModule>(info)
 {
-}
-
-Napi::Value MMKVModule::InitializeMMKV(const Napi::CallbackInfo &info)
-{
   Napi::Env env = info.Env();
   if (info[0].IsUndefined())
   {
-    Napi::TypeError::New(env, "rootDir is undefined").ThrowAsJavaScriptException();
-    return env.Undefined();
+    Napi::TypeError::New(env, "options is required").ThrowAsJavaScriptException();
   }
 
-  string rootDir = info[0].As<Napi::String>().ToString();
+  Napi::Object options = info[0].As<Napi::Object>().ToObject();
+  if (options.Get("rootDir").IsUndefined() || !options.Get("rootDir").IsString())
+  {
+    Napi::TypeError::New(env, "options.rootDir is required, string type").ThrowAsJavaScriptException();
+  }
+
+  string rootDir = options.Get("rootDir").As<Napi::String>().ToString();
+  string mmapID = DEFAULT_MMAP_ID;
+  MMKVMode mode = MMKV_SINGLE_PROCESS;
+  string cryptKey;
+  if (options.Get("id").IsString())
+  {
+    mmapID = options.Get("id").As<Napi::String>().ToString();
+  }
+  if (options.Get("multiProcess").IsBoolean() && options.Get("multiProcess").As<Napi::Boolean>().ToBoolean())
+  {
+    mode = MMKV_MULTI_PROCESS;
+  }
+  if (options.Get("cryptKey").IsString())
+  {
+    cryptKey = options.Get("cryptKey").As<Napi::String>().ToString();
+  }
+
   MMKV::initializeMMKV(rootDir);
-  mmkv = MMKV::defaultMMKV();
-  return env.Undefined();
+  this->mmkv = MMKV::mmkvWithID(mmapID, mode, &cryptKey, &rootDir);
 }
 
 Napi::Value MMKVModule::SetString(const Napi::CallbackInfo &info)
