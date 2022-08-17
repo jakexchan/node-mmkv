@@ -1,4 +1,4 @@
-# node-mmkv
+# nodejs-mmkv
 
 Base on [Tencent MMKV](https://github.com/Tencent/MMKV) high-performance key-value storage framework. Implement Node.js.
 
@@ -15,11 +15,11 @@ __It is in the experimental stage, please do not use it in production environmen
 # Install
 
 ```
-npm install --save-dev node-mmkv
+npm install --save-dev nodejs-mmkv
 
 // or
 
-yarn add node-mmkv -S
+yarn add nodejs-mmkv -S
 ```
 
 You can use it on `Electron`. The first step to setup `cmake` compile configuration:
@@ -43,7 +43,7 @@ npm install
 # Usage
 
 ```bash
-const MMKVModule = require("node-mmkv");
+const MMKVModule = require("nodejs-mmkv");
 const path = require("path");
 
 const mmkv = new MMKVModule({

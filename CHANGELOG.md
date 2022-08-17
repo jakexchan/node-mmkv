@@ -1,8 +1,8 @@
-# node-mmkv
+# nodejs-mmkv
 
-## v0.1.0
+## v0.1.0-beta
 
-First version release.
+Beta version release.
 
 ## API
 

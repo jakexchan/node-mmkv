@@ -21,8 +21,8 @@ const runner = spawn(
 );
 
 runner.on("close", () => {
-  console.log("[node-mmkv] compile close");
+  console.log("[nodejs-mmkv] compile close");
 });
 runner.on("error", (err) => {
-  console.log("[node-mmkv] compile error", err);
+  console.log("[nodejs-mmkv] compile error", err);
 });

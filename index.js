@@ -1,2 +1,2 @@
-const { MMKVModule } = require("bindings")("node-mmkv");
+const { MMKVModule } = require("bindings")("nodejs-mmkv");
 module.exports = MMKVModule;

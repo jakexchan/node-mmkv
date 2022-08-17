@@ -1,6 +1,6 @@
 {
-  "name": "node-mmkv",
-  "version": "0.1.0",
+  "name": "nodejs-mmkv",
+  "version": "0.1.0-beta",
   "description": "Base on Tencent MMKV high-performance key-value storage framework. Implement Node.js",
   "main": "index.js",
   "type": "commonjs",
