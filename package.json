@@ -25,6 +25,14 @@
     "test": "node demo/test.js"
   },
   "author": "Kevin Chan",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jakexchan/node-mmkv.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jakexchan/node-mmkv/issues"
+  },
+  "homepage": "https://github.com/jakexchan/node-mmkv#readme",
   "license": "MIT",
   "dependencies": {
     "bindings": "^1.5.0",
