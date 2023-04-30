@@ -1,5 +1,9 @@
 # nodejs-mmkv
 
+## v0.1.0
+
+- feat: support build on Windows
+
 ## v0.1.0-beta
 
 Beta version release.
