@@ -61,8 +61,9 @@ MMKVModule::MMKVModule(const Napi::CallbackInfo &info) : Napi::ObjectWrap<MMKVMo
     cryptKey = options.Get("cryptKey").As<Napi::String>().ToString();
   }
 
-  MMKV::initializeMMKV(rootDir);
-  this->mmkv = MMKV::mmkvWithID(mmapID, mode, &cryptKey, &rootDir);
+  MMKVPath_t mmkvRootDir = string2MMKVPath_t(rootDir);
+  MMKV::initializeMMKV(mmkvRootDir);
+  this->mmkv = MMKV::mmkvWithID(mmapID, mode, &cryptKey, &mmkvRootDir);
 }
 
 Napi::Value MMKVModule::SetString(const Napi::CallbackInfo &info)
@@ -180,7 +181,7 @@ Napi::Value MMKVModule::GetKeys(const Napi::CallbackInfo &info)
 
   vector<string> keys = mmkv->allKeys();
   Napi::Array result = Napi::Array::New(env);
-  for (size_t index = 0; index < keys.size(); index++)
+  for (uint32_t index = 0; index < keys.size(); index++)
   {
     result.Set(index, Napi::String::New(env, keys[index]));
   }

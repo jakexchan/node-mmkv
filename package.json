@@ -1,13 +1,12 @@
 {
   "name": "nodejs-mmkv",
-  "version": "0.1.0-beta",
+  "version": "0.1.0",
   "description": "Base on Tencent MMKV high-performance key-value storage framework. Implement Node.js",
   "main": "index.js",
   "type": "commonjs",
   "typings": "index.d.ts",
   "files": [
     "MMKV/Core",
-    "MMKV/POSIX",
     "scripts",
     "src/**/*.cc",
     "src/**/*.h",
@@ -25,6 +24,14 @@
     "test": "node demo/test.js"
   },
   "author": "Kevin Chan",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jakexchan/node-mmkv.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jakexchan/node-mmkv/issues"
+  },
+  "homepage": "https://github.com/jakexchan/node-mmkv#readme",
   "license": "MIT",
   "dependencies": {
     "bindings": "^1.5.0",

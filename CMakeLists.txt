@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.23.1)
+cmake_minimum_required(VERSION 3.10.0)
 
 # cmake_policy(SET CMP0042 NEW)
 set(CMAKE_CXX_STANDARD 17)
@@ -24,10 +24,10 @@ file(GLOB SOURCE_FILES "src/*.cc" "src/*.h")
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES} ${CMAKE_JS_SRC})
 
-add_subdirectory(MMKV/POSIX/src mmkv)
+add_subdirectory(MMKV/Core)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES PREFIX "" SUFFIX ".node")
-target_link_libraries(${PROJECT_NAME} mmkv ${CMAKE_JS_LIB})
+target_link_libraries(${PROJECT_NAME} core ${CMAKE_JS_LIB})
 
 # Include Node-API wrappers
 execute_process(COMMAND node -p "require('node-addon-api').include"

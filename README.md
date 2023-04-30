@@ -2,10 +2,6 @@
 
 Base on [Tencent MMKV](https://github.com/Tencent/MMKV) high-performance key-value storage framework. Implement Node.js.
 
-# Status
-
-__It is in the experimental stage, please do not use it in production environment.__
-
 # Dependencies
 
 - Node.js v16.x, NAPI version 8
