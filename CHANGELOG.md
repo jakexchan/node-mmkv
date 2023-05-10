@@ -1,5 +1,10 @@
 # nodejs-mmkv
 
+## v0.1.1
+
+- fix: the bug of set function when the key is `undefined`
+- chore: add test case
+
 ## v0.1.0
 
 - feat: support build on Windows
