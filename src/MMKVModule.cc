@@ -69,7 +69,7 @@ MMKVModule::MMKVModule(const Napi::CallbackInfo &info) : Napi::ObjectWrap<MMKVMo
 Napi::Value MMKVModule::SetString(const Napi::CallbackInfo &info)
 {
   Napi::Env env = info.Env();
-  if (!mmkv)
+  if (!mmkv || info[0].IsUndefined() || info[1].IsUndefined())
   {
     return env.Undefined();
   }
@@ -83,7 +83,7 @@ Napi::Value MMKVModule::SetString(const Napi::CallbackInfo &info)
 Napi::Value MMKVModule::GetString(const Napi::CallbackInfo &info)
 {
   Napi::Env env = info.Env();
-  if (!mmkv)
+  if (!mmkv || info[0].IsUndefined())
   {
     return env.Undefined();
   }
@@ -101,7 +101,7 @@ Napi::Value MMKVModule::GetString(const Napi::CallbackInfo &info)
 Napi::Value MMKVModule::SetBoolean(const Napi::CallbackInfo &info)
 {
   Napi::Env env = info.Env();
-  if (!mmkv)
+  if (!mmkv || info[0].IsUndefined())
   {
     return env.Undefined();
   }
@@ -131,7 +131,7 @@ Napi::Value MMKVModule::GetBoolean(const Napi::CallbackInfo &info)
 Napi::Value MMKVModule::SetNumber(const Napi::CallbackInfo &info)
 {
   Napi::Env env = info.Env();
-  if (!mmkv)
+  if (!mmkv || info[0].IsUndefined())
   {
     return env.Undefined();
   }

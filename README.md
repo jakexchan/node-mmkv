@@ -111,11 +111,6 @@ Clear memory cache.
 
 Clear all keys and values in storage.
 
-# TODO
-
-- Implement more APIs.
-- Test case.
-
 # License
 
 This library is licensed under the MIT license.
