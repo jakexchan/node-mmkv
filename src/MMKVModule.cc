@@ -30,6 +30,23 @@ Napi::Object MMKVModule::Init(Napi::Env env, Napi::Object exports)
   return exports;
 }
 
+const char* MMKVLogLevelStrings[] = {
+    "debug",
+    "info",
+    "warning",
+    "error",
+    "none"
+};
+
+MMKVLogLevel stringToMMKVLogLevel(const std::string& levelString) {
+    for (int i = 0; i < sizeof(MMKVLogLevelStrings) / sizeof(MMKVLogLevelStrings[0]); ++i) {
+        if (levelString == MMKVLogLevelStrings[i]) {
+            return static_cast<MMKVLogLevel>(i);
+        }
+    }
+    return MMKVLogInfo;  // Default to MMKVLogInfo if no match is found
+}
+
 MMKVModule::MMKVModule(const Napi::CallbackInfo &info) : Napi::ObjectWrap<MMKVModule>(info)
 {
   Napi::Env env = info.Env();
@@ -48,6 +65,7 @@ MMKVModule::MMKVModule(const Napi::CallbackInfo &info) : Napi::ObjectWrap<MMKVMo
   string mmapID = DEFAULT_MMAP_ID;
   MMKVMode mode = MMKV_SINGLE_PROCESS;
   string cryptKey;
+  MMKVLogLevel logLevel = MMKVLogInfo;
   if (options.Get("id").IsString())
   {
     mmapID = options.Get("id").As<Napi::String>().ToString();
@@ -60,9 +78,14 @@ MMKVModule::MMKVModule(const Napi::CallbackInfo &info) : Napi::ObjectWrap<MMKVMo
   {
     cryptKey = options.Get("cryptKey").As<Napi::String>().ToString();
   }
+  if (options.Get("logLevel").IsString())
+  {
+    std::string logLevelString = options.Get("logLevel").As<Napi::String>().ToString();
+    logLevel = stringToMMKVLogLevel(logLevelString);
+  }
 
   MMKVPath_t mmkvRootDir = string2MMKVPath_t(rootDir);
-  MMKV::initializeMMKV(mmkvRootDir);
+  MMKV::initializeMMKV(mmkvRootDir, logLevel);
   this->mmkv = MMKV::mmkvWithID(mmapID, mode, &cryptKey, &mmkvRootDir);
 }
 

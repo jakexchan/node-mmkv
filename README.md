@@ -66,6 +66,7 @@ MMKVModule constructor, `options` is required.
 - `id`: mmap id, `default: mmkv.default`[optional]
 - `multiProcess`: Enable multi process, `default: false`[optional]
 - `cryptKey`: encryption key[optional]
+- `logLevel`: log level, `default: info`[optional]
 
 ### setString: (key: string, value: string) => boolean | undefined;
 
