@@ -15,6 +15,10 @@ declare interface MMKVModuleOptions {
    * encryption key
    */
   cryptKey?: string;
+  /**
+   * log level, default: info
+   */
+  logLevel?: "debug" | "info" | "warning" | "error" | "none";
 }
 
 declare class MMKVModule {
