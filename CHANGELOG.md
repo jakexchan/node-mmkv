@@ -1,5 +1,9 @@
 # nodejs-mmkv
 
+## v0.2.0
+
+- feat: Add logLevel option #5
+
 ## v0.1.1
 
 - fix: the bug of set function when the key is `undefined`
